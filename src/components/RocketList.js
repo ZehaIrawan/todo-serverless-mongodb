@@ -2,17 +2,26 @@ import React, { useEffect, useState } from 'react';
 import api from '../utils/api';
 
 const RocketList = () => {
-  const [res, setRes] = useState('');
+  const [rocket, setRocket] = useState([]);
 
   useEffect(() => {
-    setRes(api.hello());
+    const custom = async () => {
+      let data = await api.fetchRockets();
+      setRocket(data);
+    };
+    custom();
   }, []);
 
-  console.log(res);
+  // console.log(rocket);
+
   return (
     <div>
-      RocketList
-      <p>{res[0]}</p>
+      Rocket List
+      <ul>
+        {rocket.map((r) => (
+          <li key={r}>{r}</li>
+        ))}
+      </ul>
     </div>
   );
 };

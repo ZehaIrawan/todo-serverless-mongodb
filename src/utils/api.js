@@ -1,10 +1,10 @@
-const hello = () => {
-  return fetch('/.netlify/functions/hello').then((response) => {
-console.log(response,'as');
-    return response.json();
-  });
+const fetchRockets = async () => {
+  let res = await fetch(`.netlify/functions/rocket`);
+  let result = await res.json();
+  return result;
 };
 
+
 export default {
-  hello,
+  fetchRockets
 };
